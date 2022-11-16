@@ -1,5 +1,5 @@
 """
-WSGI config for finalpjt project.
+WSGI config for mypjt project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
