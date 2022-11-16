@@ -3,7 +3,7 @@
 # 기록
 
 
-1116(수)
+- 1116(수)
 Front , back pjt 설치 후 django를 이용해서 영화 데이터를 받아서 보여주도록 하였다.
 pjt-back에 Movies , accounts, community 앱을 생성하였다.
 Movies에는 전체 영화를 보여주는 index , 평점순 탑 10위를 보여주는 recommend , 영화의 세부사항을 보여주는 detail을 구현하였다.
