@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Recommends</h1>
+  <hr>
+  {% for movie in movies %}
+    {% comment %} <p>글 번호: {{ movie.pk }}</p> {% endcomment %}
+    <p>영화 제목: {{ movie.title }}</p>
+    {% comment %} <p>글 내용: {{ movie.content }}</p> {% endcomment %}
+    <a href="{% url 'movies:detail' movie.pk %}">[detail]</a>
+    <hr>
+    {%endfor%}
+    <hr>
+{% endblock %}

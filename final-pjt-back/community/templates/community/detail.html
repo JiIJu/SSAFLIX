@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="text-center">DETAIL</h2>
+  <h3>{{ review.pk }} 번째 글</h3>
+  <hr>
+  <p>제목: {{ review.title }}</p>
+  <p>영화 제목: {{ review.movie_title }}</p>
+  <p>내용: {{ review.content }}</p>
+  <p>평점: {{ review.rank }}</p>
+  <p>작성 시각: {{ review.created_at }}</p>
+  <p>수정 시각: {{ review.updated_at }}</p>
+  <hr>
+  <h4>댓글 목록</h4>
+  {% if comments|length %}
+    <p><b>{{ comments|length }}개의 댓글이 있습니다.</b></p>
+  {% endif %}
+
+  {% for comment in comments %}
+    <div>
+      <ul>
+        <li>
+          <form action="{% url 'community:comment_like' review.pk comment.pk %}" method="POST">
+            {% csrf_token %}
+            <hr>
+            <h5><span>{{ comment.user }}님의 댓글 : {{ comment.content }}</span>
+            {% if user in comment.co_like_users.all %}
+            <button style="background-color:rgba(0,0,0,0); border: 0px"><i class="fa-solid fa-heart"></i></button>
+            {% else %}
+            <button style="background-color:rgba(0,0,0,0); border: 0px"><i class="fa-regular fa-heart"></i></button>
+            {% endif %}{{ comment.co_like_users.all.count }}</h5>
+          </form>
+        </li>
+        {% if user.is_authenticated %}
+          <form action="{% url 'community:create_cocomment' review.pk comment.pk   %}" method="POST">
+            {% csrf_token %}
+            {{ cocomment_form }}
+            <input type="submit">
+          </form>
+        {% endif %}
+        {% for cocomment in comment.cocomment_set.all %}
+          <form action="{% url 'community:cocomment_like' review.pk comment.pk cocomment.pk %}" method="POST">
+            {% csrf_token %}
+            <p><span>- {{ cocomment.user }}의 대댓글 : {{ cocomment.content }}</span>
+            {% if user in cocomment.coco_like_users.all %}
+              <button style="background-color:rgba(0,0,0,0); border: 0px"><i class="fa-solid fa-heart"></i></button>
+            {% else %}
+              <button style="background-color:rgba(0,0,0,0); border: 0px"><i class="fa-regular fa-heart"></i></button>
+            {% endif %}{{ cocomment.coco_like_users.all.count }}</p>
+          </form>
+        {% endfor %}
+      </ul>
+    </div>
+
+  {% empty %}
+    <p><b>댓글이 없어요..</b></p>
+  {% endfor %}
+  <hr>
+  {% if user.is_authenticated %}
+    <form action="{% url 'community:create_comment' review.pk %}" method="POST">
+      {% csrf_token %}
+      {{ comment_form }}
+      <input type="submit">
+    </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인하세요.]</a>
+  {% endif %}
+  <a href="{% url 'community:index' %}">[back]</a>
+{% endblock  %}

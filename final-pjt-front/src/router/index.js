@@ -1,27 +1,29 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import IndexView from '../views/movies/IndexView.vue'
+import MovieListView from '../views/movies/MovieListView.vue'
 import DetailView from '../views/movies/DetailView.vue'
 import RecommendView from '../views/movies/RecommendView.vue'
+// import WatchListView from '../views/movies/WatchListView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/movies',
-    name: 'index',
-    component: IndexView
-  },
-  {
-    path: '/movies/:movieid',
-    name: 'detail',
-    component: DetailView
+    name: 'MovieList',
+    component: MovieListView
   },
   {
     path: '/movies/recommend',
-    name: 'recommend',
+    name: 'Recommend',
     component: RecommendView
   },
+  {
+    path: '/movies/:id',
+    name: 'Detail',
+    component: DetailView
+  },
+ 
   // {
   //   path: '/about',
   //   name: 'about',

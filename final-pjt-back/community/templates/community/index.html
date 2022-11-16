@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Community</h1>
+  <hr>
+  {% for review in reviews %}
+    <p>작성자 : <a href="{% url 'accounts:profile' review.user.username %}">{{ review.user }}</a></p>
+    <p>글 번호: {{ review.pk }}</p>
+    <p>글 제목: {{ review.title }}</p>
+    <p>글 내용: {{ review.content }}</p>
+    <form id='likeform' data-review-pk='{{ review.pk }}'>
+      {% csrf_token %}
+      {% if user in review.like_users.all %}
+        <button id='btns-{{ review.pk }}'>좋아요 취소</button>
+      {% else %}
+        <button id='btns-{{ review.pk }}'>좋아요</button>
+      {% endif %}
+    </form>
+    <p>
+      <span id='likecount-{{ review.pk }}'>{{ review.like_users.all|length }}</span> 명이 이 글을 좋아합니다.
+    </p>
+    <a href="{% url 'community:detail' review.pk %}">[detail]</a>
+    <hr>
+  {% endfor %}
+{% endblock %}
+
+{% block script %}
+    <script>
+      const likeform = document.querySelectorAll('#likeform')
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken').value
+      likeform.forEach(form => {
+
+      form.addEventListener('submit', function(event){
+        event.preventDefault()
+        const reviewpk = event.target.dataset.reviewPk
+        axios({
+          method : 'post',
+          headers : {'X-CSRFToken':csrftoken},
+          url : `/community/${reviewpk}/like/`
+        })
+        .then((response) => {
+          const isLiked = response.data.isLiked
+          const isLikedCount = response.data.isLikedCount
+          const btn = document.querySelector(`#btns-${reviewpk}`)
+          const likecount = document.querySelector(`#likecount-${reviewpk}`)
+          if (isLiked === true) {
+            btn.innerText = '좋아요 취소'
+          } else {
+            btn.innerText = '좋아요'
+          }
+          console.log(btn)
+          likecount.innerText = `${isLikedCount}`
+        })
+      })})
+
+      
+    </script>
+{% endblock script %}

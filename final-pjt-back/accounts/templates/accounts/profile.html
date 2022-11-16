@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ person.username }}의 프로필 페이지</h1>
+  {% with followings=person.followings.all followers=person.followers.all %}
+    <div>
+      <div id = "divfollow">
+        팔로잉 : {{ followings|length }} / 팔로워 : {{ followers|length }}
+      </div>
+      {% if user != person %}
+        <div>
+          <form id = "follow-form" data-person-pk="{{ person.pk }}">
+            {% csrf_token %}
+            {% if user in followers %}
+              <button id="followBtn">언팔로우</button>
+            {% else %}
+              <button id="followBtn">팔로우</button>
+            {% endif %}
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  {% endwith %}
+{% endblock %}
+
+{% block script %}
+    <script>
+      const followform = document.querySelector('#follow-form')
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+      followform.addEventListener('submit', function(event) {
+        event.preventDefault()
+        const personpk = event.target.dataset.personPk
+        axios ({
+          method : "post",
+          headers : {
+            "X-CSRFToken": csrftoken,
+          },
+          url : `/accounts/${personpk}/follow/`
+        })
+        .then((response) => {
+          const followbtn = document.querySelector('#followBtn')
+          const divfollow = document.querySelector('#divfollow')
+          const isfollowed = response.data.isfollowed
+          const followings = response.data.followings
+          const followers = response.data.followers
+          if (isfollowed === true) {
+            followbtn.innerText = '언팔로우'
+            divfollow.innerText = `팔로잉 : ${ followings } / 팔로워 : ${ followers }`
+          } else {
+            followbtn.innerText = '팔로우'
+            divfollow.innerText = `팔로잉 : ${ followings } / 팔로워 : ${ followers }`
+          }
+        })
+      })
+    </script>
+{% endblock script %}
