@@ -7,14 +7,14 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .forms import MovieForm , GenreForm
-from .serializers import MovieSerializer , GenreSerializer
+from .serializers import MovieSerializer , GenreSerializer , MovieListSerializer
 # Create your views here.
 # @require_safe
 @api_view(['GET'])
 def index(request):
     if request.method == 'GET':
         movies = Movie.objects.all()
-        serializer = MovieSerializer(movies,many=True)
+        serializer = MovieListSerializer(movies,many=True)
         # context = {
         #     'movies' : movies,
         # }
@@ -27,20 +27,26 @@ def index(request):
 def detail(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
     # form = MovieForm(request)
-    context = {
-        'movie' : movie,
-    }
-    return render(request,'movies/detail.html',context)
+    if request.method == 'GET':
+        serializer = MovieSerializer(movie)
+        return Response(serializer.data)
+    # context = {
+    #     'movie' : movie,
+    # }
+    # return render(request,'movies/detail.html',context)
 
 # @require_safe
 @api_view(['GET'])
 def recommended(request):
-    if request.user.is_authenticated:
-        movies = Movie.objects.order_by('-popularity')
-        movies = movies[0:10]
-        context = {
-            'movies' : movies,
-        }
-        return render(request,'movies/recommended.html',context)
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            movies = Movie.objects.order_by('-popularity')
+            movies = movies[0:10]
+            serializer = MovieSerializer(movies,many=True)
+            return Response(serializer.data)
+            # context = {
+            #     'movies' : movies,
+            # }
+            # return render(request,'movies/recommended.html',context)
     
     return redirect('accounts:login')

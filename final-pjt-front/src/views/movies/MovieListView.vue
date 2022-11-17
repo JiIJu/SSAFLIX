@@ -20,6 +20,7 @@ export default {
     data() {
       return {
         movieData : null,
+        addid : 1,
       }
     },
     components : {
@@ -36,11 +37,10 @@ export default {
           })
           
           // 평점순 내림차순
-          const datas2 = datas.sort((a,b)=>{
-              return b['vote_average'] - a['vote_average']
-          })
-          
-          this.movieData = datas2
+          // const datas2 = datas.sort((a,b)=>{
+          //     return b['vote_average'] - a['vote_average']
+          // })
+          this.movieData = datas
           // console.log(datas)
       })            
       .catch((error)=>{

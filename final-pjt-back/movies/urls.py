@@ -6,8 +6,8 @@ app_name = 'movies'
 
 urlpatterns = [
     path('movies/', views.index, name='index'),
-    path('<int:movie_pk>/', views.detail, name='detail'),
-    path('recommended/', views.recommended, name='recommended'),
+    path('movies/<int:movie_pk>/', views.detail, name='detail'),
+    path('movies/recommended/', views.recommended, name='recommended'),
     # # # 필수 작성
     # path('schema/', SpectacularAPIView.as_view(), name='schema'),
     # # # optional UI

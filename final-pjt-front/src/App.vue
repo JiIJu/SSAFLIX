@@ -2,7 +2,8 @@
   <div id="app">
     <nav>
       <router-link to="/movies">MovieList</router-link> |
-      <router-link to="/movies/recommend">About</router-link> |
+      <!-- <router-link to="/movies/detail">Detail</router-link> | -->
+      <router-link to="/movies/recommend">Top10</router-link> |
       <!-- <router-link to="/movies/watchlist">WatchList</router-link> -->
     </nav>
     <router-view/>
