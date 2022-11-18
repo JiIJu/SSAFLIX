@@ -4,7 +4,9 @@
       <router-link to="/movies">MovieList</router-link> |
       <!-- <router-link to="/movies/detail">Detail</router-link> | -->
       <router-link to="/movies/recommend">Top10</router-link> |
-      <!-- <router-link to="/movies/watchlist">WatchList</router-link> -->
+      <router-link to="/movies/latest">Latest movie</router-link> | 
+      <router-link to="/accounts/signup">Sign Up</router-link> |
+      <router-link to="/accounts/login">LogIn</router-link>
     </nav>
     <router-view/>
   </div>

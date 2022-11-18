@@ -8,9 +8,7 @@
     <p>관객 수 : {{movie?.popularity}}</p>
     <p>개봉일 : {{movie?.release_date}}</p>
     <p>줄거리 : {{movie?.overview}}</p>
-    <!-- <span> {%for genre in movie.genre.all %}
-        {{genre.name}}
-       {%endfor%}</span> -->
+
     <!-- <span v-for="(genre,index) in movie.genre" 
     :key="index">{{genre.name}}</span> -->
     <!-- {{movie.genre.name}} -->
