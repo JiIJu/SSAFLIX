@@ -29,12 +29,20 @@ export default {
         poster : null,
       }
     },
+    computed: {
+      isLogin() {
+        return this.$store.getters.isLogin
+      }
+    },
     methods:{
       getMovieRecommend() {
-        axios({
+        if (this.isLogin) {
+          axios({
           method : 'get',
           url : `${API_URL}/api/v1/movies/`,
-          headers : true
+          headers : {
+            Authorization: `Token ${this.$store.state.token}`
+          }
         })
         .then((response) => {
           
@@ -56,6 +64,10 @@ export default {
       .catch((error)=>{
           console.log(error)
       })
+        } else {
+          alert('로그인이 필요한 서비스입니다.')
+          this.$router.push({name : 'LogIn'})
+        }
       }
     },
   created() {

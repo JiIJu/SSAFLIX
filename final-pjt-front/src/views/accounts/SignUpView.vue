@@ -38,6 +38,9 @@ export default {
         password1: password1,
         password2: password2,
       }
+      if (password1!=password2) {
+        alert('비밀번호가 다릅니다!')
+      }
     //   console.log(payload)
       this.$store.dispatch('signUp', payload)
 

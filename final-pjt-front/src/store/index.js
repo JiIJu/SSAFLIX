@@ -17,11 +17,19 @@ export default new Vuex.Store({
     token: null,
   },
   getters: {
+    isLogin(state) {
+      return state.token ? true : false
+    }
   },
   mutations: {
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push({ name: 'MovieList' })
+    },
+    CLEAR_TOKEN(state) {
+      state.token = null
+      alert('로그아웃 되었습니다.')
+      router.push({name : 'LogIn'})
     }
 
   },
@@ -46,6 +54,7 @@ export default new Vuex.Store({
 
     },
     logIn(context, payload) {
+      // console.log(context)
       axios({
         method: 'post',
         url: `${API_URL}/accounts/login/`,

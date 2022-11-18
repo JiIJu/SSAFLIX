@@ -27,17 +27,26 @@ export default {
         poster : null,
       }
     },
+    computed: {
+      isLogin() {
+        console.log()
+        return this.$store.getters.isLogin
+      }
+    },
     // props: {
     //   movie : Object,
     // },
     methods: {
       getMovieDetail() {
-        const movie_id = this.$route.params.id
+        if (this.isLogin) {
+          const movie_id = this.$route.params.id
         // console.log(movie_id)
         axios({
           method : 'get',
           url : `${API_URL}/api/v1/movies/`,
-          headers : true
+          headers : {
+            Authorization: `Token ${this.$store.state.token}`
+          }
         })
         .then((res) => {
           console.log(res)
@@ -54,6 +63,11 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+        }
+        else {
+          alert('로그인이 필요한 서비스입니다.')
+          this.$router.push({name : 'LogIn'})
+        }
       }
     },
     created() {

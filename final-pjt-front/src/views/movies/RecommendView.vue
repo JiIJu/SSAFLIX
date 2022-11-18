@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Top10 영화</h1>
-    <div v-for='movie in movieData' :key='movie'>
+    <div v-for='movie in movieData' :key='movie.id'>
     <img :src="movie.poster_path" alt="">
     <p>제목 : {{movie?.title}}</p>
     <!-- <p>{{movie?.vote}}</p> -->
@@ -29,12 +29,20 @@ export default {
         poster : null,
       }
     },
+    computed: {
+      isLogin() {
+        return this.$store.getters.isLogin
+      }
+    },
     methods:{
       getMovieRecommend() {
-        axios({
+        if (this.isLogin) {
+          axios({
           method : 'get',
           url : `${API_URL}/api/v1/movies/`,
-          headers : true
+          headers : {
+            Authorization: `Token ${this.$store.state.token}`
+          }
         })
         .then((response) => {
           
@@ -56,6 +64,10 @@ export default {
       .catch((error)=>{
           console.log(error)
       })
+        } else {
+          alert('로그인이 필요한 페이지입니다.')
+          this.$router.push({name : 'LogIn'})
+        }
       }
     },
   created() {

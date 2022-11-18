@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Axios from 'axios'
+import axios from 'axios'
 import MovieCard from '@/components/MovieCard'
 
 const API_KEY = '1cc991c3c4ede5f1631fb06af01f8fd8'
@@ -26,26 +26,40 @@ export default {
     components : {
       MovieCard
     },
+    computed: {
+      isLogin() {
+        return this.$store.getters.isLogin
+      }
+    },
     methods:{
       movieApi() {
-        Axios.get(`${API_URL}`)
+        if (this.isLogin) {
+          axios({
+          method : 'get',
+          url : `${API_URL}/api/v1/movies/`,
+          headers : {
+            Authorization: `Token ${this.$store.state.token}`
+          }
+        })
         .then((response) => {
-          console.log(response)
+          
+          // console.log(response)
           // overview 있는 영화만 출력
-          const datas = response.data.results.filter((movie)=>{
+          const datas = response.data.filter((movie)=>{
               return movie.overview
           })
-          
-          // 평점순 내림차순
-          // const datas2 = datas.sort((a,b)=>{
-          //     return b['vote_average'] - a['vote_average']
-          // })
+
           this.movieData = datas
+
           // console.log(datas)
       })            
       .catch((error)=>{
           console.log(error)
       })
+        } else {
+          alert('로그인이 필요한 서비스입니다.')
+          this.$router.push({name : 'LogIn'})
+        }
       }
     },
   created() {
