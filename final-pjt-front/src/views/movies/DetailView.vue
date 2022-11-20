@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>detail!!!</h1>
-    <img :src="poster" alt="">
+    <img :src="poster_path" alt="">
     <p>제목 : {{movie?.title}}</p>
     <!-- <p>{{movie?.vote}}</p> -->
 

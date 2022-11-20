@@ -2,7 +2,7 @@
   <div>
     <h1>Top10 영화</h1>
     <div v-for='movie in movieData' :key='movie.id'>
-    <img :src="movie.poster_path" alt="">
+    <img :src="movie.poster_path" alt=""  width="200" height="300" class="d-inline-block align-text-top">
     <p>제목 : {{movie?.title}}</p>
     <!-- <p>{{movie?.vote}}</p> -->
 

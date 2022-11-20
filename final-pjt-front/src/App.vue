@@ -32,9 +32,13 @@
   text-align: center;
   color: #2c3e50;
 }
+html {
+  background-color: #42b983;
+}
 
 nav {
   padding: 30px;
+  background-color: gray;
 }
 
 
