@@ -4,6 +4,7 @@
     <p>제목 : {{movie.title}}</p>
     <p>평점 : {{movie.vote_average}}</p>
     <p>{{movie.overview}}</p>
+    <hr>
     <!-- <p>{{movie.id}}</p> -->
     <!-- <router-link
     :to="{ name: 'Detail',params : { id : movie.id } }"

@@ -11,18 +11,18 @@
     <nav>
       {% if user.is_authenticated %}
       <h3>Hello, {{ user.username }}</h3>
-      <a href="{% url 'accounts:profile' user %}">내 프로필</a>
+      {% comment %} <a href="{% url 'accounts:profile' user %}">내 프로필</a>
       <form action="{% url 'accounts:logout' %}" method="POST">
         {% csrf_token %}
         <input type="submit" value="Logout">
-      </form>
+      </form> {% endcomment %}
       <a href="{% url 'movies:index'%}">Movie</a>
       <a href="{% url 'community:index'%}">Community</a>
       <a href="{% url 'community:create'%}">New Review</a>
       <a href="{%url 'movies:recommended'%}">추천영화</a>
-      {% else %}
+      {% comment %} {% else %}
       <a href="{% url 'accounts:signup' %}">Signup</a>
-      <a href="{% url 'accounts:login' %}">Login</a>
+      <a href="{% url 'accounts:login' %}">Login</a> {% endcomment %}
       {% endif %}
     </nav>
     {% block content %}

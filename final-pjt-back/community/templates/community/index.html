@@ -2,6 +2,7 @@
 
 {% block content %}
   <h1>Community</h1>
+  <a href="{% url 'community:create'%}">[create]</a>
   <hr>
   {% for review in reviews %}
     <p>작성자 : <a href="{% url 'accounts:profile' review.user.username %}">{{ review.user }}</a></p>
