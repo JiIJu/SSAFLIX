@@ -6,6 +6,7 @@ import RecommendView from '../views/movies/RecommendView.vue'
 import LatestMovieView from '../views/movies/LatestMovieView.vue'
 import SignUpView from '../views/accounts/SignUpView.vue'
 import LogInView from '../views/accounts/LogInView.vue'
+import ReviewListView from '../views/community/ReviewListView.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ const routes = [
     path: '/accounts/login',
     name: 'LogIn',
     component: LogInView
+  },
+  {
+    path: '/community/',
+    name: 'ReviewList',
+    component: ReviewListView
   },
   {
     path: '/movies/:id',

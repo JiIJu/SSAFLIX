@@ -43,12 +43,12 @@ export default {
         })
         .then((response) => {
           
-          // console.log(response)
+          console.log(response.data)
           // overview 있는 영화만 출력
-          const datas = response.data.filter((movie)=>{
+          const datas = response.data.results.filter((movie)=>{
               return movie.overview
           })
-
+          // console.log(datas)
           this.movieData = datas
 
           // console.log(datas)
