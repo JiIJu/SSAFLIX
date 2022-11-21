@@ -8,7 +8,7 @@
               id="input-group-1"
               label="Movie Title"
               label-for="input-1"
-              description="솔직한 리뷰는 환영입니다!!!"
+              description="리뷰를 작성해 주세요~"
             >
               <b-form-input
                 id ="input-1"

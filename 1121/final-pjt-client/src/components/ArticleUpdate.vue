@@ -8,7 +8,7 @@
               id="input-group-1"
               label="Movie Title"
               label-for="input-1"
-              description="솔직한 리뷰는 환영입니다!!!"
+              description="리뷰를 작성해 주세요"
             >
               <b-form-input
                 id ="input-1"
@@ -76,7 +76,8 @@ export default {
       genres: [{ text: 'Select One', value: null }, 'Horror', 'Romance', 'Comedy', 'Adventure', 'Fantasy', 'Animation','Drama','Action','History','Western','Thriller','Crime','Documentary','SF','Mystery','Music','Family','War','TVmovie'],
       rates: [{ text: 'Rate for it!!', value: null }, '1', '2', '3', '4', '5', '6','7','8','9','10'],
       show: true,
-      user: ''
+      user: '',
+      edit : false
     }
   },
   methods: {
@@ -86,12 +87,10 @@ export default {
     },
     onReset(evt) {
       evt.preventDefault()
-      // Reset our form values
       this.article.title = ''
       this.article.rate = ''
       this.article.content = null
       
-      // Trick to reset/clear native browser form validation state
       this.show = false
       this.$nextTick(() => {
         this.show = true

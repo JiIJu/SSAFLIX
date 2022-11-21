@@ -5,17 +5,18 @@
       <b-col cols="8">
         <b-card no-body class="overflow-hidden text-dark">
           <b-row no-gutters>
-              <b-col md="6">
+            <!-- 영화사진넣기 -->
+              <!-- <b-col md="6">
                 <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
-              </b-col>
-              <b-col md="6">
+              </b-col> -->
+              <b-col md="12">
                 <b-card-body title="">
                   <b-card-text>
-                    <h2>{{ $route.query.article.title }}</h2>
-                    <h3>평점 : {{$route.query.article.rate}}</h3>
-                    {{$route.query.article.content}}
+                    <h2>{{ $route.query.article.title }}</h2><hr>
+                    <h3>평점 : {{$route.query.article.rate}}</h3><hr>
+                    <h4>내용 : {{$route.query.article.content}}</h4><hr>
                     <br>
-                    {{$route.query.article.genre}}
+                    <h4>장르 : {{$route.query.article.genre}} </h4>
                     <br>
                     <!-- <p>created_at : {{ $route.query.article.created_at }}</p> -->
                     <!-- <p>updated_at : {{ $route.query.article.updated_at }}</p> -->
@@ -36,18 +37,12 @@
     <br>
     <div>
   <b-card title="" body-class="text-center" header-tag="nav">
-    <template #header>
-      <b-nav card-header tabs>
-        <b-nav-item active>Active</b-nav-item>
-        <b-nav-item>Inactive</b-nav-item>
-        <b-nav-item disabled>Disabled</b-nav-item>
-      </b-nav>
-    </template>
+
 
     <b-card-text class="text-dark">
-      <h3>Comments</h3>
+      <h3>댓글</h3>
       <div v-if="!hiComments.length">
-        <p>No Comments</p>
+        <p>댓글이 없어요</p>
       </div>
       <div v-else v-for="(comment, idx) in hiComments" :key="idx" class="justify-content-between">
         <span class="mr-5">{{comment.user}} : {{ comment.content }}</span>
@@ -161,9 +156,9 @@ export default {
       const config = this.getToken()
       const id = this.$route.query.article.id
       axios.post(`${SERVER_URL}/articles/${id}/comment_list_create/`, this.comment, config)
-        .then((res) => {
+        .then(() => {
           this.getComments()
-          console.log(res)
+          this.comment.content = null
           // this.$router.push({ name:'Articles' })
         })
         .catch((err) => {
@@ -172,6 +167,11 @@ export default {
     },
     updateComment: function (content) {
       this.comment.content = content
+      // let contentId = this.comments.filter((com)=> {
+      //   return com.content === content
+      // })
+      // console.log(contentId[0].id)
+      // this.comments[contentId[0].id].content = content
     },
     deleteComment: function (comment) {
       const config = this.getToken()

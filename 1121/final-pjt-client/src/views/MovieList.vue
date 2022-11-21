@@ -144,6 +144,7 @@ export default {
     getMovies: function () {
       axios.get(`${SERVER_URL}/movies/`)
         .then(res => {
+          console.log(res)
           this.movies = res.data
           this.movies.reverse()
         })

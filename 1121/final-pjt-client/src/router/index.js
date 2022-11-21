@@ -5,7 +5,6 @@ import Articles from '../views/Articles.vue'
 import ArticleDetail from '@/components/ArticleDetail.vue'
 import ArticleUpdate from '@/components/ArticleUpdate.vue'
 import CreateArticle from '../components/CreateArticle.vue'
-import Entertainment from '../views/Entertainment.vue'
 import Login from '../components/Login.vue'
 import MovieDetail from '../components/MovieDetail.vue'
 import MovieList from '../views/MovieList.vue'
@@ -57,11 +56,6 @@ const routes = [
     path: '/moviedetail',
     name: 'MovieDetail',
     component: MovieDetail,
-  },
-  {
-    path: '/entertainment',
-    name: 'Entertainment',
-    component: Entertainment
   },
   {
     path: '/slidetounlock',

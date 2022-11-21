@@ -16,6 +16,7 @@
                   <div>출시일 : {{  $route.query.movie.release_date }}</div>
                   <br>
                   <h4>평점 : {{  $route.query.movie.vote_average }}</h4>
+                  <h5> 줄거리 : {{movie}}</h5>
                   <Rating :movie="movie" />
                 </b-card-text>
               </b-card-body>
