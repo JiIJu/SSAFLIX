@@ -6,21 +6,10 @@
       <!-- <div>
       <v-select v-model="genre" :item="genres" itme-text="id" item-value="genre" v-on:change="conBox"></v-select>
       </div> -->
-      <select 
-        v-model="genre"
-        @change="change" 
-    >
-        <option
-            v-for   ="each in genres"
-            :key    ="each.id"
-            v-text  ="each.genre"
-            :value  ="each.genre"
-        ></option>
-
-    </select>
-      
-
-      <h4>당신이 가장 좋아하는 장르는 {{ bestGenre }}입니다.</h4>
+      <select @change="pick($event)" class="p-3 mb-2 bg-black text-danger start-100">
+        <option v-for="genre in genres" :key="genre.id">{{genre.genre}}</option>
+      </select>
+      <h4>{{ genre }} 장르를 모아봤어요</h4>
     </header>
     <div v-if="recommendMovies == null">
       선호하는 장르를 골라주세요!</div>
@@ -46,7 +35,7 @@ export default {
   },
   data() {
     return {
-    genre : 'default',
+    genre : 'Advanture',
     id : 'default',
     genres: [
     {genre : 'Adventure', id : 12},
@@ -79,9 +68,10 @@ export default {
       }
       return config
     },
-    conBox : function() {
-      console.log(this.cont)
-    }
+    pick(event){
+      this.genre = event.target.value
+	console.log(event.target.value); //value값 출력
+}
   },
   computed: {
     ...mapGetters([
