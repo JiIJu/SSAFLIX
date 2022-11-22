@@ -4,7 +4,7 @@ import Home from '@/views/movies/Home.vue'
 import Community from '@/views/community/Community.vue'
 import Login from '@/views/accounts/Login.vue'
 import Signup from '@/views/accounts/Signup.vue'
-import TinderMain from '@/views/tinder/TinderMain.vue'
+
 import Recommend from '@/views/recommend/Recommend.vue'
 
 Vue.use(VueRouter)
@@ -29,11 +29,6 @@ const routes = [
     path: '/community/reviews/',
     name: 'Community',
     component: Community
-  },
-  {
-    path: '/tinder/tinder/',
-    name: 'TinderMain',
-    component: TinderMain
   },
   {
     path: '/recommend/',

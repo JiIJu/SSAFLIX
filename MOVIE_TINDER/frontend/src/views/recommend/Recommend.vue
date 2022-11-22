@@ -1,18 +1,31 @@
 <template>
 <div class="recommend">
     <header>
+      <select @change="pick($event)" class="p-3 mb-2 bg-black text-muted border border-white rounded-5" style="float:right;">
+        <option v-for="genre in genres" :key="genre.id">{{genre.genre}}</option>
+      </select>
+
+      <!-- <v-autocomplete
+        :items="genres"
+        item-text="genre"
+        :item-value="genres"
+        v-model="genre"
+        label="장르 선택"
+        required
+        @change="pick($event)"
+      ></v-autocomplete> -->
+
       <h2>당신이 좋아할 만한</h2>
 
       <!-- <div>
       <v-select v-model="genre" :item="genres" itme-text="id" item-value="genre" v-on:change="conBox"></v-select>
       </div> -->
-      <select @change="pick($event)" class="p-3 mb-2 bg-black text-danger start-100">
-        <option v-for="genre in genres" :key="genre.id">{{genre.genre}}</option>
-      </select>
-      <h4>{{ genre }} 장르를 모아봤어요</h4>
+      
+      
+      <h4 v-if="genre">{{ genre }} 장르를 모아봤어요</h4>
+      <h4 v-else>장르를 골라주세요</h4>
     </header>
-    <div v-if="recommendMovies == null">
-      선호하는 장르를 골라주세요!</div>
+
     <!-- MovieCards -->
     <div class="popular-list row row-cols-1 row-cols-md-5 gy-3">
       <MovieCard
@@ -35,9 +48,10 @@ export default {
   },
   data() {
     return {
-    genre : 'Advanture',
-    id : 'default',
+    genre : '',
+    id : '',
     genres: [
+    {genre : '' , id : -1},
     {genre : 'Adventure', id : 12},
     {genre : 'Fantasy', id : 14 },
     {genre : 'Animation', id : 16},
@@ -69,11 +83,14 @@ export default {
       return config
     },
     pick(event){
+      console.log(event)
       this.genre = event.target.value
       const genre_id = this.genres.filter((movie) => {
         if (this.genre === movie.genre)
         {return movie.id}
       })
+      console.log(this.genre , this.genre_id)
+      this.id = genre_id[0].id
       // console.log(genre_id[0].id)
       // console.log(event); //value값 출력
       this.$store.dispatch('getLikeGenreMovies', {'token' : this.setToken(),'movie' : genre_id[0]})
