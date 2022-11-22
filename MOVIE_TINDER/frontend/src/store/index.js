@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import router from '@/router'
-
+import _ from 'lodash'
 const SERVER_URL = 'http://127.0.0.1:8000/'
 
 Vue.use(Vuex)
@@ -181,8 +181,22 @@ export default new Vuex.Store({
         headers: token,
       })
       .then(res => {
+        console.log(res)
         commit('GET_MOVIES', res.data)
         commit('GET_MOVIE_TITLES', res.data)
+      })
+      .catch(err => console.log(err))
+    },
+    randomMovies({commit}, token) {
+      axios({
+        method: 'GET',
+        url: `${SERVER_URL}movies/`,
+        headers: token,
+      })
+      .then(res => {
+        const movie = _.sample(res.data)
+        commit('GET_MOVIES', movie)
+        commit('GET_MOVIE_TITLES', movie)
       })
       .catch(err => console.log(err))
     },

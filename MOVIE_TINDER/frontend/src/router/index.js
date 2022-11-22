@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/movies/Home.vue'
+import Random from '@/views/movies/Random.vue'
 import Community from '@/views/community/Community.vue'
 import Login from '@/views/accounts/Login.vue'
 import Signup from '@/views/accounts/Signup.vue'
@@ -14,6 +15,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/random',
+    name: 'Random',
+    component: Random
   },
   {
     path: '/accounts/signup/',

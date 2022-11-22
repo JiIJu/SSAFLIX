@@ -18,6 +18,9 @@
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'Community' }">커뮤니티</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'Random' }">랜덤영화</router-link>
+          </li>
         </ul>
         <!-- 로그인 했을 경우 -->
         <ul v-if="isLogin" class="navbar-nav">
