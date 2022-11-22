@@ -144,8 +144,8 @@ export default new Vuex.Store({
     },
     // RECOMMEND MUTATIONS
     GET_LIKE_GENRE_MOVIES(state, res) {
-      state.recommendMovies = res.data
-      state.bestGenre = res.best_genre
+      state.recommendMovies = res[0]
+      state.bestGenre = res[1]
     },
   },
   actions: {
@@ -306,7 +306,7 @@ export default new Vuex.Store({
       .catch(err => console.log(err))
     },
     // TINDER ACTIONS
-    getRandomMovies({commit}, token) {
+    getRandomMovies({commit}, token ) {
       axios({
         method: 'GET',
         url: `${SERVER_URL}movies/random/`,
@@ -336,14 +336,18 @@ export default new Vuex.Store({
       .catch(err => console.log(err))
     },
     // RECOMMEND ACTIONS
-    getLikeGenreMovies({commit}, token) {
+    getLikeGenreMovies({commit}, data) {
       axios({
         method: 'GET',
-        url: `${SERVER_URL}movies/recommend/`,
-        headers: token,
+        url: `${SERVER_URL}movies/`,
+        headers: data.token,
       })
       .then((res) => {
-        commit('GET_LIKE_GENRE_MOVIES', res.data)
+        const new_res = res.data.filter((movie) => {
+          // console.log(movie.genre_ids)
+          return movie.genre_ids.includes(data.movie.id)
+        })
+        commit('GET_LIKE_GENRE_MOVIES', [new_res,data.movie.genre])
       })
       .catch(err => console.log(err))
     },

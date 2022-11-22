@@ -20,7 +20,7 @@ from django.contrib.auth import get_user_model
 @permission_classes([IsAuthenticated])
 def home(request):
     if request.method == 'GET':
-        movies = Movie.objects.order_by('-popularity')[:50]
+        movies = Movie.objects.order_by('-popularity')[:1000]
         serializer = MovieSerializer(movies, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -38,7 +38,7 @@ def movie_detail(request, movie_pk):
 @authentication_classes([JSONWebTokenAuthentication])
 @permission_classes([IsAuthenticated])
 def random(request):
-    movies = Movie.objects.order_by('?')[:200]
+    movies = Movie.objects.order_by('?')[:1000]
     serializer = MovieRandomSerializer(movies, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 

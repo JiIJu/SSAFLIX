@@ -70,17 +70,23 @@ export default {
     },
     pick(event){
       this.genre = event.target.value
-	console.log(event.target.value); //value값 출력
-}
+      const genre_id = this.genres.filter((movie) => {
+        if (this.genre === movie.genre)
+        {return movie.id}
+      })
+      // console.log(genre_id[0].id)
+      // console.log(event); //value값 출력
+      this.$store.dispatch('getLikeGenreMovies', {'token' : this.setToken(),'movie' : genre_id[0]})
+    }
   },
   computed: {
     ...mapGetters([
       'recommendMovies', 'bestGenre'
     ])
   },
-  created() {
-    this.$store.dispatch('getLikeGenreMovies', this.setToken())
-  }
+  // created() {
+  //   this.$store.dispatch('getLikeGenreMovies', this.setToken())
+  // }
 }
 </script>
 

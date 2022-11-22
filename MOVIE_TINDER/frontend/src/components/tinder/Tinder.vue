@@ -44,7 +44,7 @@
             slot="like"
             class="pointer-wrap like-pointer-wrap"
             :style="{ opacity: likeOpacity }"
-          >
+>
             <slot name="like" :opacity="likeOpacity" />
           </span>
           <span
