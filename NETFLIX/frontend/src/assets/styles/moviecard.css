@@ -11,6 +11,11 @@
   transition: transform 500ms;
 }
 
+.popular-list .movie-item:focus,
+.popular-list .movie-item:hover {
+  transform: scale(1.4);
+  z-index: 1;
+}
 .movie-item:hover {
   cursor: pointer;
 }

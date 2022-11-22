@@ -1,9 +1,8 @@
 <template>
   <div class="home">
     <header>
-      <h2 style="text-align : center;">랜덤영화</h2>
-      <button type="button" class="btn btn-secondary" @click="random" style="margin:auto;
-        display:block;">Random</button>
+      <h2 style="text-align:center;" @click="random">랜덤영화</h2>
+
     </header>
     <br><br>
     <div class="movie-detail-body">
@@ -76,14 +75,16 @@ export default {
 
     },
     
-    // created() {
-    //     this.$store.dispatch('randomMovies', this.setToken())
-    //     // this.$store.dispatch('getGenres', this.setToken())
-    // },
+    created() {
+        this.$store.dispatch('randomMovies', this.setToken())
+        // this.$store.dispatch('getGenres', this.setToken())
+    },
 
 }
 </script>
 
 <style>
-
+h2:hover {
+  cursor: pointer;
+}
 </style>

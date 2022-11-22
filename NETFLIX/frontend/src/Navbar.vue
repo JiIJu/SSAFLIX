@@ -16,10 +16,13 @@
             <router-link class="nav-link" :to="{ name: 'Recommend' }">추천</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'Community' }">커뮤니티</router-link>
+            <router-link class="nav-link" :to="{ name: 'Random' }">랜덤영화</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'Random' }">랜덤영화</router-link>
+            <router-link class="nav-link" :to="{ name: 'Search' }">영화검색</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'Community' }">커뮤니티</router-link>
           </li>
         </ul>
         <!-- 로그인 했을 경우 -->

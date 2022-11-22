@@ -5,8 +5,10 @@ import Random from '@/views/movies/Random.vue'
 import Community from '@/views/community/Community.vue'
 import Login from '@/views/accounts/Login.vue'
 import Signup from '@/views/accounts/Signup.vue'
-
 import Recommend from '@/views/recommend/Recommend.vue'
+import Search from '@/views/movies/Search.vue'
+
+
 
 Vue.use(VueRouter)
 
@@ -20,6 +22,11 @@ const routes = [
     path: '/random',
     name: 'Random',
     component: Random
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search
   },
   {
     path: '/accounts/signup/',
