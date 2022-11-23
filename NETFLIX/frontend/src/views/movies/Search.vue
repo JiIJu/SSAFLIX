@@ -2,7 +2,7 @@
   <div class="home">
     <div class="input-group flex-nowrap">
   <input type="text" class="form-control" v-model="keyword" placeholder="영화제목을 입력하세요" @keyup.enter="search"> 
-  <button class="input-group-text" id="addon-wrapping" @click="search">검색</button><br>
+  <button class="input-group-text btn btn-secondary" id="addon-wrapping" @click="search">&#x1f50d;<span class="sr-only">Search</span></button><br>
   </div><br>
   <div class="popular-list row  row-cols-md-5 ">
       <MovieCard
