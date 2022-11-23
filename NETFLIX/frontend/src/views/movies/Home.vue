@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <header>
-      <h2>요즘 인기있는</h2>
+      <h2>요즘 인기있는</h2><br>
     </header>
     <!-- MovieCards -->
-    <div class="popular-list row  row-cols-md-4 ">
+    <div class="popular-list row  row-cols-md-5 ">
       <MovieCard
         v-for="(movie, idx) in movies"
         :key="idx"

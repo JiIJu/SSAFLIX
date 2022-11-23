@@ -13,6 +13,9 @@
         v-on="on"
       >
       </v-img>
+      <b style="display:flex;display: flex; justify-content:center; align-items:center;">{{getYear}}</b>
+      <b style="display:flex;display: flex; justify-content:center; align-items:center;">{{movie.title}}</b>
+
     </template>
     <div class="movie-detail-card">
       <div class="movie-detail-toolbar">
@@ -101,6 +104,9 @@ export default {
     imgSrc: function () {
       return "https://image.tmdb.org/t/p/original" + this.movie.poster_path
     },
+    getYear: function() {
+      return this.movie.release_date.slice(0,4)
+    }
   },
 }
 </script>

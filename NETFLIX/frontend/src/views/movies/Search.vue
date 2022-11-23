@@ -4,7 +4,7 @@
   <input type="text" class="form-control" v-model="keyword" placeholder="영화제목을 입력하세요" @keyup.enter="search"> 
   <button class="input-group-text" id="addon-wrapping" @click="search">검색</button><br>
   </div><br>
-  <div class="popular-list row  row-cols-md-6 ">
+  <div class="popular-list row  row-cols-md-5 ">
       <MovieCard
         v-for="(movie, idx) in searchData"
         :key="idx"

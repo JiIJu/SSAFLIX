@@ -6,7 +6,7 @@
     </header>
     <br><br>
     <div class="movie-detail-body">
-        <div class="movie-detail-poster">
+        <div class="movie-detail-poster ">
           <img :src="imgSrc" alt="포스터 없음">
         </div>
         <div class="movie-detail-upper">
