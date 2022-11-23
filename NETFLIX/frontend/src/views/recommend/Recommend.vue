@@ -7,7 +7,7 @@
 
       <h2>당신이 좋아할 만한</h2>
 
-      <h4 v-if="genre === ''">장르를 선택해 주세요</h4>
+      <h4 v-if="genre === '장르를 선택해 주세요'">장르를 선택해 주세요</h4>
       <h4 v-else>{{ genre }} 장르를 모아봤어요</h4>
     </header>
 
@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-    genre : '',
+    genre : '장르를 선택해 주세요',
     id : '',
     genres: [
     {genre : '장르를 선택해 주세요.' , id : -1},

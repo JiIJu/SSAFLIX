@@ -98,6 +98,7 @@ export default new Vuex.Store({
             rank: reviewItem.rank,
           }
         }
+        window.location.reload(true);
         return review
       })
     },
