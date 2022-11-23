@@ -5,25 +5,10 @@
         <option v-for="genre in genres" :key="genre.id">{{genre.genre}}</option>
       </select>
 
-      <!-- <v-autocomplete
-        :items="genres"
-        item-text="genre"
-        :item-value="genres"
-        v-model="genre"
-        label="장르 선택"
-        required
-        @change="pick($event)"
-      ></v-autocomplete> -->
-
       <h2>당신이 좋아할 만한</h2>
 
-      <!-- <div>
-      <v-select v-model="genre" :item="genres" itme-text="id" item-value="genre" v-on:change="conBox"></v-select>
-      </div> -->
-      
-      
-      <h4 v-if="genre">{{ genre }} 장르를 모아봤어요</h4>
-      <h4 v-else>장르를 골라주세요</h4>
+      <h4 v-if="genre === ''">장르를 선택해 주세요</h4>
+      <h4 v-else>{{ genre }} 장르를 모아봤어요</h4>
     </header>
 
     <!-- MovieCards -->
