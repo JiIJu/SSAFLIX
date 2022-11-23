@@ -1,7 +1,7 @@
 <template>
 <div class="recommend">
     <header>
-      <select @change="pick($event)" class="p-3 mb-2 bg-black text-muted border border-white rounded-5" style="float:right;">
+      <select @change="pick($event)" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="float:right;">
         <option v-for="genre in genres" :key="genre.id">{{genre.genre}}</option>
       </select>
 
@@ -51,7 +51,7 @@ export default {
     genre : '',
     id : '',
     genres: [
-    {genre : '' , id : -1},
+    {genre : '장르를 선택해 주세요.' , id : -1},
     {genre : 'Adventure', id : 12},
     {genre : 'Fantasy', id : 14 },
     {genre : 'Animation', id : 16},
