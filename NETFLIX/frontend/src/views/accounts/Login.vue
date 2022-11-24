@@ -9,9 +9,9 @@
         <button @click="login" class="btn submitBtn">로그인</button>
       
       <div class="loginAddOn">
-        <p>도움이 필요하신가요?</p>
+        <p style="cursor:pointer">도움이 필요하신가요?</p>
         <div>
-          Ssaflix 회원이 아닌가요? <a :href="signupLink">지금 가입하세요.</a>
+          LETFLIX 회원이 아닌가요? <a :href="signupLink">지금 가입하세요.</a>
         </div>
       </div>
       </div>
