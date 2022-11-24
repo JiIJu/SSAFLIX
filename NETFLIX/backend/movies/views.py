@@ -19,7 +19,7 @@ from django.contrib.auth import get_user_model
 @permission_classes([IsAuthenticated])
 def home(request):
     if request.method == 'GET':
-        movies = Movie.objects.order_by('-popularity')[:1000]
+        movies = Movie.objects.order_by('-popularity')[:2000]
         serializer = MovieSerializer(movies, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
